@@ -16,7 +16,7 @@ podTemplate(containers: [
                               // https://www.jenkins.io/doc/pipeline/steps/git/
                               git 'https://github.com/zenpython97/Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition.git'
                               sh '''
-                              echo webhook launched ........
+                              echo webhook launched .......
                               cd Chapter08/sample1
                               chmod +x gradlew
                               ./gradlew test
