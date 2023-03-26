@@ -17,29 +17,11 @@ podTemplate(containers: [
                               git 'https://github.com/zenpython97/Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition.git'
                               sh '''
                               echo webhook launched ..........
+                              echo this is testing branch
                               cd Chapter08/sample1
                               chmod +x gradlew
                               ./gradlew test
                               '''
-                         }
-                         stage("Code coverage") {
-                              try {
-                              sh '''
-                              pwd
-                              cd Chapter08/sample1
-                              ./gradlew jacocoTestCoverageVerification
-                              ./gradlew jacocoTestReport
-                              '''
-                              } catch (Exception E) {
-                                   echo 'Failure detected'
-                              }
-                              // from the HTML publisher plugin
-                              // https://www.jenkins.io/doc/pipeline/steps/htmlpublisher/
-                              publishHTML (target: [
-                                   reportDir: 'Chapter08/sample1/build/reports/tests/test',
-                                   reportFiles: 'index.html',
-                                   reportName: "JaCoCo Report"
-                              ])
                          }
                     }
                }
